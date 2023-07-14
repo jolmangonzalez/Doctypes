@@ -1,0 +1,2 @@
+# Doctypes
+Archivos de configuracion
