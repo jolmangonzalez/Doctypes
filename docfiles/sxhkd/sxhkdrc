@@ -1,58 +1,125 @@
 #
 # wm independent hotkeys
-#
 
-# Corre la terminal
-super + Return
-	alacritty
+##################################    Keys    ##################################
 
-# Lanzador de programas
-super + @space
-	rofi -modi drun,run -show drun
+### Screenprint
+Print
+	flameshot full
 
-# Recarga en caliente los archivos de configuracion de SXHKD
+### Brightness controller
+XF86MonBrightnessUp
+	brightnessctl set +5%
+XF86MonBrightnessDown
+	brightnessctl set 5%-
+
+### Volume Controller
+XF86AudioRaiseVolume
+	pamixer	--increase 5
+XF86AudioLowerVolume
+	pamixer	--decrease 5
+XF86AudioMute
+	pamixer --toggle-mute
+
+################################################################################
+
+##############################    Super + Keys    ##############################
+
+### Recarga la configuracion de SXHKD ###
 super + Escape
 	pkill -USR1 -x sxhkd
-
-#
-# BSPWM hotkeys
-#
-
-# quit/restart bspwm
-super + alt + {q,r}
-	bspc {quit,wm -r}
-
-# close and kill
-super + {_,shift + }w
-	bspc node -{c,k}
-
-# alternate between the tiled and monocle layout
+### Emulador de terminal
+super + Return
+	alacritty
+### Lanzador de aplicaciones
+super + @space
+	rofi -modi drun,run -show drun
+### Audio Controller
+super + a
+	pavucontrol
+### Navegador Firefox
+super + b
+	firefox
+### Libreoffice Calc
+super + c
+	libreoffice --calc
+### Lanzador de aplicaciones
+super + d
+	dmenu_run
+### Gestor de archivos PCManFM
+super + e
+	pcmanfm
+### Modo floating
+super + f
+	bspc node -t floating
+### GIMP
+super + g
+	gimp
+### Lockscreen
+super + l
+	dm-tool lock
+### Modo tiling
+super + t
+	bspc node -t tiled
+### Inkscape
+super + i
+	inkscape
+### Modo Fullscreen
 super + m
-	bspc desktop -l next
+	bspc node -t fullscreen
+### Navegador Brave
+super + n
+	brave
+### Cerrar ventanas enfocada
+super + q
+	bspc node -c
+### Visual Studio Code
+super + v
+	code
+### Libreoffice Writer
+super + w
+	libreoffice --writer
+
+
+################################################################################
+
+###########################    Super + Alt + Keys    ###########################
+
+### Cerrar sesion
+super + alt + e
+	pkill -u $USER
+### Apagar Equipo
+super + alt + p
+	poweroff
+## Salir de BSPWM
+super + alt + q
+	bspc quit
+## Reiniciar BSPWM
+super + alt + r
+	reboot
+
+################################################################################
+
+#########################    Super + Control + Keys    #########################
+
+
+
+################################################################################
+
+##########################    Super + Shift + Keys    ##########################
+
+super + shift + r
+	bspc wm -r
+
+################################################################################
+
+#####	BSPWM hotkeys	#####
 
 # send the newest marked node to the newest preselected node
 super + y
 	bspc node newest.marked.local -n newest.!automatic.local
 
-# swap the current node and the biggest window
-super + g
-	bspc node -s biggest.window
 
-#
-# state/flags
-#
-
-# set the window state
-super + {t,shift + t,s,f}
-	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
-
-# set the node flags
-super + ctrl + {m,x,y,z}
-	bspc node -g {marked,locked,sticky,private}
-
-#
-# focus/swap
-#
 
 # focus the node in the given direction
 super + {_,shift + }{h,j,k,l}

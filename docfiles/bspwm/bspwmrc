@@ -3,17 +3,18 @@
 pkill sxhkd
 sxhkd &
 
-$HOME/.config/polybar/cuts/launch.sh
+$HOME/.config/polybar/launch.sh
 
-pkill dunst
-dunst -c ./config/dunst/dunstrc &
+
+
 
 # pgrep -x sxhkd > /dev/null || sxhkd &
 
-bspc monitor -d 1 2 3 4 5 6 7 8 9 10
+bspc monitor eDP1 -n monitor0 -d 1 2 3 4 5
+bspc monitor HDMI1 -n monitor1 -d 6 7 8 9 10
 
-bspc config border_width        0
-bspc config window_gap          0
+bspc config border_width        3
+bspc config window_gap          3
 
 bspc config top_padding         0
 bspc config bottom_padding      0

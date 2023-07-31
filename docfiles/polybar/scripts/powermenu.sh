@@ -11,17 +11,16 @@ uptime=$(uptime -p | sed -e 's/up //g')
 rofi_command="rofi -no-config -theme $dir/powermenu.rasi"
 
 # Options
-shutdown=" Shutdown"
-reboot=" Restart"
-lock=" Lock"
-suspend=" Sleep"
-logout=" Logout"
+shutdown="󰐥 Apagar"
+reboot=" Reiniciar"
+lock=" Bloquear"
+logout=" Cerrar sesión"
 
 # Confirmation
 confirm_exit() {
 	rofi -dmenu\
-		-no-config\
-        -i\
+        -no-config\
+		-i\
 		-no-fixed-num-lines\
 		-p "Are You Sure? : "\
 		-theme $dir/confirm.rasi
@@ -33,7 +32,7 @@ msg() {
 }
 
 # Variable passed to rofi
-options="$lock\n$suspend\n$logout\n$reboot\n$shutdown"
+options="$lock\n$logout\n$reboot\n$shutdown"
 
 chosen="$(echo -e "$options" | $rofi_command -p "Uptime: $uptime" -dmenu -selected-row 0)"
 case $chosen in
